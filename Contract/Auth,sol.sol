@@ -8,6 +8,7 @@ contract Auth {
         adminAddress = msg.sender;
     }
 
+    // getter
     function isAdmin(address _id) public view returns (bool){
         return _id == adminAddress;
     }
