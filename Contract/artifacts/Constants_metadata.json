@@ -1,0 +1,51 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contract/Constants.sol": "Constants"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contract/Constants.sol": {
+			"keccak256": "0x37c69164e6b8db491704ded3aedd0122a0da3abade2a731b2c5c7065496d86a9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://43df66121048dcfd10f6a92bb259dd0cd832fb381ca3e6d547a01c804e1dd685",
+				"dweb:/ipfs/QmPCLDatxrUovLmEPjPU4Zk5NS8WsZBVtSvEZw6nsP5AX2"
+			]
+		}
+	},
+	"version": 1
+}

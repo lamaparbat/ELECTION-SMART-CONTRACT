@@ -1,0 +1,475 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidateList",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "_id",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "fullName",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "citizenshipNumber",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "age",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "gender",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "dob",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "profile",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "province",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "district",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "municipality",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ward",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Structure.User",
+						"name": "user",
+						"type": "tuple"
+					},
+					{
+						"internalType": "string",
+						"name": "partyName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "agenda",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidateNames",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "candidates",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "_id",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "fullName",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "citizenshipNumber",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "age",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "gender",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "dob",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "email",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "profile",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "province",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "district",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "municipality",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "ward",
+								"type": "string"
+							}
+						],
+						"internalType": "struct Structure.User",
+						"name": "user",
+						"type": "tuple"
+					},
+					{
+						"internalType": "string",
+						"name": "partyName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "agenda",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voteCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllCandidates",
+				"outputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "address",
+										"name": "_id",
+										"type": "address"
+									},
+									{
+										"internalType": "string",
+										"name": "fullName",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "citizenshipNumber",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "age",
+										"type": "uint256"
+									},
+									{
+										"internalType": "string",
+										"name": "gender",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "dob",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "email",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "profile",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "province",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "district",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "municipality",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "ward",
+										"type": "string"
+									}
+								],
+								"internalType": "struct Structure.User",
+								"name": "user",
+								"type": "tuple"
+							},
+							{
+								"internalType": "string",
+								"name": "partyName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "agenda",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address[]",
+								"name": "votedVoterLists",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct Structure.Candidate[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_id",
+						"type": "address"
+					}
+				],
+				"name": "getCandidateDetails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"components": [
+									{
+										"internalType": "address",
+										"name": "_id",
+										"type": "address"
+									},
+									{
+										"internalType": "string",
+										"name": "fullName",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "citizenshipNumber",
+										"type": "uint256"
+									},
+									{
+										"internalType": "uint256",
+										"name": "age",
+										"type": "uint256"
+									},
+									{
+										"internalType": "string",
+										"name": "gender",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "dob",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "email",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "profile",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "province",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "district",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "municipality",
+										"type": "string"
+									},
+									{
+										"internalType": "string",
+										"name": "ward",
+										"type": "string"
+									}
+								],
+								"internalType": "struct Structure.User",
+								"name": "user",
+								"type": "tuple"
+							},
+							{
+								"internalType": "string",
+								"name": "partyName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "agenda",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address[]",
+								"name": "votedVoterLists",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct Structure.Candidate",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contract/Candidate.sol": "Candidate"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Contract/Candidate.sol": {
+			"keccak256": "0xd1b5b3966cce33342556a1913ffa0a0662329c6db0eb07d8f60f9e0ee14c55aa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6b9af3030cf5783b4af076c4fa1e0f29d9c60d2099ebe08a8bb30ab8457813c5",
+				"dweb:/ipfs/QmTaiksUSLWz6g9c1Z7arT67KtsEQ3ubQmAzxPKSmbNoXe"
+			]
+		},
+		"Contract/Structure.sol": {
+			"keccak256": "0xb2724a9ad9544713c2cb2a13e77ee090ea57896c0800ddd24821d834142c9460",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0fc12e5e4a41ca0e4636863492b8b13ffde31094ab516ce7e6efe13f58270db6",
+				"dweb:/ipfs/QmUCQChoorPDSh476nvyNGKF6HoXYEENkNehZff1guNYLP"
+			]
+		}
+	},
+	"version": 1
+}
