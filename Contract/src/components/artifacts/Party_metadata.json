@@ -1,0 +1,248 @@
+{
+	"compiler": {
+		"version": "0.8.17+commit.8df45f5f"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getAllParties",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalMember",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "agenda",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "logoUrl",
+								"type": "string"
+							},
+							{
+								"internalType": "address[]",
+								"name": "members",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct Structure.Party[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					}
+				],
+				"name": "getPartyDetails",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "address",
+								"name": "owner",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalMember",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "agenda",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "logoUrl",
+								"type": "string"
+							},
+							{
+								"internalType": "address[]",
+								"name": "members",
+								"type": "address[]"
+							}
+						],
+						"internalType": "struct Structure.Party",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "parties",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalMember",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "agenda",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "logoUrl",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "partyList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalMember",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "agenda",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "logoUrl",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "partyNames",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Contract/src/components/Party.sol": "Party"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": [],
+		"viaIR": true
+	},
+	"sources": {
+		"Contract/src/common/Structure.sol": {
+			"keccak256": "0xb2724a9ad9544713c2cb2a13e77ee090ea57896c0800ddd24821d834142c9460",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0fc12e5e4a41ca0e4636863492b8b13ffde31094ab516ce7e6efe13f58270db6",
+				"dweb:/ipfs/QmUCQChoorPDSh476nvyNGKF6HoXYEENkNehZff1guNYLP"
+			]
+		},
+		"Contract/src/components/Party.sol": {
+			"keccak256": "0x9b41f495f06cdbb6f9508d9540bc173ae69419293abcf9694d307bd7c8e91589",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://acf8d1d39ac008b1ce7124d4fc3ff9fc499baaa1c87ca9a5ade665b4c15a6861",
+				"dweb:/ipfs/QmTL7dWdHDpjDwTxQUkTW3zwzxNkfTzLjGFtZBLDzTGznM"
+			]
+		}
+	},
+	"version": 1
+}

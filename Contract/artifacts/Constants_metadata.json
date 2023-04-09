@@ -9,6 +9,25 @@
 				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "gender_list",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -39,11 +58,11 @@
 	},
 	"sources": {
 		"Contract/Constants.sol": {
-			"keccak256": "0x37c69164e6b8db491704ded3aedd0122a0da3abade2a731b2c5c7065496d86a9",
+			"keccak256": "0x359682ca71e0989bab3e6a10b6a8a0427c1f16ccab495224bd6e4f09a6f6d0d1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://43df66121048dcfd10f6a92bb259dd0cd832fb381ca3e6d547a01c804e1dd685",
-				"dweb:/ipfs/QmPCLDatxrUovLmEPjPU4Zk5NS8WsZBVtSvEZw6nsP5AX2"
+				"bzz-raw://c4af7483197baf1063d35857e47b18391f5272a8df69f19c3919508ac9bd7441",
+				"dweb:/ipfs/QmXgAfCPz6q4HuDKLsppfbyrUfyzztxoQ5UH51Kmosed5L"
 			]
 		}
 	},

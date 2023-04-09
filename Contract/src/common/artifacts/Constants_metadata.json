@@ -11,32 +11,19 @@
 				"type": "constructor"
 			},
 			{
-				"inputs": [],
-				"name": "adminAddress",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
 					{
-						"internalType": "address",
-						"name": "_id",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
-				"name": "isAdmin",
+				"name": "gender_list",
 				"outputs": [
 					{
-						"internalType": "bool",
+						"internalType": "string",
 						"name": "",
-						"type": "bool"
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -56,7 +43,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Contract/Utils.sol": "Auth"
+			"Contract/src/common/Constants.sol": "Constants"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -67,15 +54,16 @@
 			"enabled": true,
 			"runs": 200
 		},
-		"remappings": []
+		"remappings": [],
+		"viaIR": true
 	},
 	"sources": {
-		"Contract/Utils.sol": {
-			"keccak256": "0x17ce2830c4d5aba477a4033143dbc9e5acb8ff5a60e0640658db086132f01688",
+		"Contract/src/common/Constants.sol": {
+			"keccak256": "0x359682ca71e0989bab3e6a10b6a8a0427c1f16ccab495224bd6e4f09a6f6d0d1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://88e9c8324f2d49f3acba3838b3906739da844dc76bf6bbaea95a76eea68a0ef1",
-				"dweb:/ipfs/Qmc2RBzobKp9AReyaMU8ZLEbaHJGA9rZjvNe6Z4MkbJdgw"
+				"bzz-raw://c4af7483197baf1063d35857e47b18391f5272a8df69f19c3919508ac9bd7441",
+				"dweb:/ipfs/QmXgAfCPz6q4HuDKLsppfbyrUfyzztxoQ5UH51Kmosed5L"
 			]
 		}
 	},

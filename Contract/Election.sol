@@ -1,48 +1,33 @@
 // SPDX-License-Identifier:MIT
 pragma solidity ^0.8.0;
 
-import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol";
-import "./Structure.sol";
-import "./Candidate.sol";
-import "./Voter.sol";
-import "./Auth.sol";
+import "./src/components/Candidate.sol";
+import "./src/components/Voter.sol";
+import "./src/components/Party.sol";
 
-contract Election is Structure, Constants, Candidate, Voter, Auth{
+contract Election is Candidate, Voter, Party{
     using SafeMath for uint;
     
     // Mapping 
-    mapping (address => Party) public parties;
     mapping (string => Election) public elections;
     mapping (address => FAQ) public faqs;
 
     // Arrays
-    Party[] public partyList;
     Election[] public electionList;
     FAQ[] public faqList;
-    string[] public partyNames;
 
 
     // counter varirables
-    uint public totalCandidate = 0;
     uint public totalParty = 0;
     uint public totalElection = 0;
-    uint public totalMaleVoters = 0;
-    uint public totalFemaleVoters = 0;
-    uint public totalOtherVoters = 0;
 
     // Event abstractions
     event PartyCreated(Party party);
-    event CandidateCreated(Candidate candidate);
-    event VoterCreated(Voter voter);
     event electionStart(Election election);
     event NewFaqAdded(FAQ faq);
 
     // setter functions
-    function addParty(string memory _name, uint _totalMember, string memory _agenda, string memory _logoUrl) public payable {
-        if(msg.sender != adminAddress){
-            revert("Only admin is allow to add Party !");
-        }
-
+    function addParty(string memory _name, uint _totalMember, string memory _agenda, string memory _logoUrl) public payable isAuthorize(msg.sender) hasValue {
         address[] memory emptyArray;
         Party memory party = Party(adminAddress, _name, _totalMember, _agenda, _logoUrl, emptyArray);
         
@@ -54,60 +39,6 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
         emit PartyCreated(party);
     }
 
-    function addCandidate(string memory _name, uint _citizenshipNo, uint _age, string memory _agenda, string memory _dob,
-        string memory _email, string memory _profile, string memory _partyName, string memory _province, string memory _district, 
-        string memory _municipality, string memory _ward, string memory _gender
-    ) public payable {
-        address[] memory votedVoterLists;
-        address _id = msg.sender;
-
-        // verify voter if already exist
-        if(candidates[_id].user.citizenshipNumber != 0){
-            revert("Candidate already registered !");
-        }
-
-        updateCounter(_gender);
-
-        Candidate memory candidate = Candidate(
-            User(_id, _name, _citizenshipNo, _age, _gender, _dob, _email, _profile, _province, _district, _municipality, _ward),
-             _partyName, _agenda, 0, votedVoterLists
-        );
-
-        candidates[_id] = candidate;
-        candidateNames.push(_name);
-        candidateList.push(candidate);
-        totalCandidate = totalCandidate.add(1);
-
-        emit CandidateCreated(candidate);
-    }
-
-    function addVoter(string memory _name, uint _citizenshipNo, uint _age, string memory _dob,
-        string memory _email, string memory _profile,string memory _province,
-        string memory _district, string memory _municipality, string memory _ward, string memory _gender
-    ) public payable {
-        address _id = msg.sender;
-
-        // verify voter if already exist
-        if(voters[_id].user.citizenshipNumber != 0){
-            revert("Voter already registered !");
-        }
-        
-        updateCounter(_gender);
-
-        address[] memory votedCandidateList;
-        Voter memory voter = Voter(
-            User(_id, _name, _citizenshipNo, _age, _gender, _dob, _email, _profile, _province, _district, _municipality, _ward), 
-            votedCandidateList, 0
-        );
-        
-        voters[_id] = voter;
-        voterNames.push(_name);
-        voterList.push(voter);
-        totalVoter = totalVoter.add(1);
-
-        emit VoterCreated(voter);
-    }
-
     function createElection( 
         string memory _title,
         string memory _description,
@@ -115,11 +46,7 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
         string memory _endDate,
         string memory _electionType,
         string[] memory galleryImagesUrl
-    ) public payable{
-        if(msg.sender != adminAddress){
-            revert("Only admin is allow to create election !");
-        }
-
+    ) public payable isAuthorize(msg.sender) hasValue{
         address[] memory selectedCandidates;
         Election memory election = Election(_title, _description, _startDate, _endDate, _electionType, selectedCandidates, galleryImagesUrl);
 
@@ -133,11 +60,7 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
     function addSelectedCandidates(
         address[] memory _selectedCandidates,
         string memory electionAddress
-    ) public payable{
-        if(msg.sender != adminAddress){
-            revert("Only admin is allow to select candidates !");
-        }
-
+    ) public payable isAuthorize(msg.sender) hasValue{
         for (uint i = 0; i < _selectedCandidates.length; i++) {
             elections[electionAddress].selectedCandidates.push(_selectedCandidates[i]);
         }
@@ -152,7 +75,7 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
         }
     }
 
-    function addFaqs(string memory title, string memory description, string memory fileUrl, string memory createdAt) public payable {
+    function addFaqs(string memory title, string memory description, string memory fileUrl, string memory createdAt) public payable hasValue{
         address _id = msg.sender;
         ReplyComment[] memory replies;
 
@@ -161,7 +84,7 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
         faqList.push(faq);
     }
 
-    function addFaqComment(address faqId, string memory replyMsg, string memory createdAt) public payable {
+    function addFaqComment(address faqId, string memory replyMsg, string memory createdAt) public payable hasValue{
         address _id = msg.sender;
         ReplyComment memory reply = ReplyComment(_id, replyMsg, createdAt);
 
@@ -175,27 +98,8 @@ contract Election is Structure, Constants, Candidate, Voter, Auth{
         }
     }
 
-    function updateCounter(string memory _gender) public {
-        if(keccak256(bytes(_gender)) == keccak256(bytes(gender_list[0]))){
-            totalMaleVoters = totalMaleVoters.add(1);
-        }else if(keccak256(bytes(_gender)) == keccak256(bytes(gender_list[1]))){
-            totalFemaleVoters = totalFemaleVoters.add(1);
-        }else if(keccak256(bytes(_gender)) == keccak256(bytes(gender_list[2]))){
-            totalOtherVoters = totalOtherVoters.add(1);
-        }
-    }
-
-    // getter functions
-    function getAllParties() public view returns (Party[] memory){
-        return partyList;
-    }
-
     function getAllElections() public view returns (Election[] memory){
         return electionList;
-    }
-
-    function getPartyDetails(address owner) public view returns(Party memory){
-        return parties[owner];
     }
 
     function getAllFAQs() public view returns (FAQ[] memory) {
