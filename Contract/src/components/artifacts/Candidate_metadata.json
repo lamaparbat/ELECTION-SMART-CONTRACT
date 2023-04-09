@@ -763,19 +763,19 @@
 			]
 		},
 		"Contract/src/common/Utils.sol": {
-			"keccak256": "0xbb615198252c4cb6d64efb293c1ef2076a55bbf025fb50bdd386980672d348e3",
+			"keccak256": "0xf72530c85cfcbc98b1aadb90d08169d0cb9a955cea4351eabbc617b7b97f770a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://904ad40fe34ae383a9c5fc489282ad078e464947de3a59bee2cafd10b40abd56",
-				"dweb:/ipfs/QmcCVCceuNLV5aKhehPoyGbogzdXoAZKdjn3AUzP69GkPh"
+				"bzz-raw://b0c6a63b0ccaac17f1797e509b692e1d4e29b4825f9ebcbffed99806c4642644",
+				"dweb:/ipfs/QmdCqG7RtfaHp2GU93X7LXqjjyBNuFkFkLDpF4t5GSA1gJ"
 			]
 		},
 		"Contract/src/components/Candidate.sol": {
-			"keccak256": "0x862b6b22c4948f40a108461b53887a0570a146d1811915a94e05dc258176ea26",
+			"keccak256": "0x01471256749cd5c240fae0457a0e647d34233fd97636934b0e5fb50cefa52830",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://47a907b554f1e06727fee53cb303d5952d4ead129d224390980dfdbcce14ea59",
-				"dweb:/ipfs/QmSbZb2WWM1z6rZCktipMNKwUuEA5tdaHjH8AFdeEw57PR"
+				"bzz-raw://2b56fa40bb236e80c6f1ac62a5f99bea9a8dcf5e7c7edcc90ae61f041f0d5a21",
+				"dweb:/ipfs/QmZtRuuEw4fHcMSAiEkikxHR2V6b4pwh3NrkxmsqJbUcxx"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol": {

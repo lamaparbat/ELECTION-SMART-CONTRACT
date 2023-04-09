@@ -27,9 +27,8 @@ contract Candidate is Structure, Utils{
         address _id = msg.sender;
 
         // verify voter if already exist
-        if(candidates[_id].user.citizenshipNumber != 0){
-            revert("Candidate already registered !");
-        }
+        require(candidates[_id].user.citizenshipNumber != _citizenshipNo, "Candidate with given Citizenship No. already registered !");
+        require(candidates[_id].user._id != _id, "Candidate already registered !");
 
         updateCounter(_gender);
 

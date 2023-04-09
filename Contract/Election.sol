@@ -27,7 +27,7 @@ contract Election is Candidate, Voter, Party{
     event NewFaqAdded(FAQ faq);
 
     // setter functions
-    function addParty(string memory _name, uint _totalMember, string memory _agenda, string memory _logoUrl) public payable isAuthorize(msg.sender) hasValue {
+    function addParty(string memory _name, uint _totalMember, string memory _agenda, string memory _logoUrl) public payable isAuthorize(msg.sender) {
         address[] memory emptyArray;
         Party memory party = Party(adminAddress, _name, _totalMember, _agenda, _logoUrl, emptyArray);
         
@@ -46,7 +46,7 @@ contract Election is Candidate, Voter, Party{
         string memory _endDate,
         string memory _electionType,
         string[] memory galleryImagesUrl
-    ) public payable isAuthorize(msg.sender) hasValue{
+    ) public payable isAuthorize(msg.sender){
         address[] memory selectedCandidates;
         Election memory election = Election(_title, _description, _startDate, _endDate, _electionType, selectedCandidates, galleryImagesUrl);
 
@@ -60,7 +60,7 @@ contract Election is Candidate, Voter, Party{
     function addSelectedCandidates(
         address[] memory _selectedCandidates,
         string memory electionAddress
-    ) public payable isAuthorize(msg.sender) hasValue{
+    ) public payable isAuthorize(msg.sender){
         for (uint i = 0; i < _selectedCandidates.length; i++) {
             elections[electionAddress].selectedCandidates.push(_selectedCandidates[i]);
         }
@@ -75,7 +75,7 @@ contract Election is Candidate, Voter, Party{
         }
     }
 
-    function addFaqs(string memory title, string memory description, string memory fileUrl, string memory createdAt) public payable hasValue{
+    function addFaqs(string memory title, string memory description, string memory fileUrl, string memory createdAt) public payable{
         address _id = msg.sender;
         ReplyComment[] memory replies;
 
@@ -84,7 +84,7 @@ contract Election is Candidate, Voter, Party{
         faqList.push(faq);
     }
 
-    function addFaqComment(address faqId, string memory replyMsg, string memory createdAt) public payable hasValue{
+    function addFaqComment(address faqId, string memory replyMsg, string memory createdAt) public payable{
         address _id = msg.sender;
         ReplyComment memory reply = ReplyComment(_id, replyMsg, createdAt);
 
