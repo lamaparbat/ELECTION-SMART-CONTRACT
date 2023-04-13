@@ -20,43 +20,6 @@ contract Voter is Candidate{
     // Event abstractions
     event VoteCast(Candidate candidate);
     event VoterCreated(Voter voter);
-    
-    // caste vote
-    function vote(address _candidateId) public payable{
-        address _voterId = msg.sender;
-
-        // restrict admin for vote casting
-        if(_voterId == adminAddress){
-            revert("Admin is restrict to caste vote.");
-        }
-
-        // verify vote limit count
-        if(voters[_voterId].voteLimitCount > 3){
-            revert("You have exceed the vote caste limit.");
-        }
-
-        candidates[_candidateId].votedVoterLists.push(_voterId);
-        voters[_voterId].votedCandidateList.push(_candidateId);
-        candidates[_candidateId].voteCount = candidates[_candidateId].voteCount.add(1);
-        voteCount = voteCount.add(1); 
-
-        for(uint i=0;i<candidateList.length;i++){
-            if(candidateList[i].user._id == _candidateId){
-                candidateList[i].votedVoterLists.push(_voterId);
-            }
-        }
-
-        for(uint i=0;i<voterList.length;i++){
-            if(voterList[i].user._id == _voterId){
-                voterList[i].votedCandidateList.push(_candidateId);
-            }
-        }
-
-        voters[_voterId].voteLimitCount = voters[_voterId].voteLimitCount.add(1);
-        
-
-        emit VoteCast(candidates[_candidateId]);
-    }
 
 
     // add new voter

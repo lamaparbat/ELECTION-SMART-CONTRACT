@@ -5,32 +5,92 @@ import "./src/components/Candidate.sol";
 import "./src/components/Voter.sol";
 import "./src/components/Party.sol";
 
-contract Election is Candidate, Voter, Party{
-    using SafeMath for uint;
-    
-    // Mapping 
-    mapping (string => Election) public elections;
-    mapping (address => FAQ) public faqs;
+contract Election is Candidate, Voter, Party {
+    using SafeMath for uint256;
+
+    // Mapping
+    mapping(string => Election) public elections;
+    mapping(address => FAQ) public faqs;
 
     // Arrays
     Election[] public electionList;
     FAQ[] public faqList;
 
-
     // counter varirables
-    uint public totalParty = 0;
-    uint public totalElection = 0;
+    uint256 public totalParty = 0;
+    uint256 public totalElection = 0;
 
     // Event abstractions
     event PartyCreated(Party party);
     event electionStart(Election election);
     event NewFaqAdded(FAQ faq);
 
-    // setter functions
-    function addParty(string memory _name, uint _totalMember, string memory _agenda, string memory _logoUrl) public payable isAuthorize(msg.sender) {
+    // caste vote
+    function vote(address _candidateId, string memory electionAddress) public payable {
+        address _voterId = msg.sender;
+
+        // restrict admin for vote casting
+        if (_voterId == adminAddress) {
+            revert("Admin is restrict to caste vote.");
+        }
+
+        // verify vote limit count
+        if (voters[_voterId].voteLimitCount > 3) {
+            revert("You have exceed the vote caste limit.");
+        }
+
+        candidates[_candidateId].votedVoterLists.push(_voterId);
+        voters[_voterId].votedCandidateList.push(_candidateId);
+        candidates[_candidateId].voteCount = candidates[_candidateId]
+            .voteCount
+            .add(1);
+        voteCount = voteCount.add(1);
+
+        // update the copy data in election collections
+        for (uint256 i = 0; i < elections[electionAddress].candidates.length; i++) {
+            Candidate memory candidate = elections[electionAddress].candidates[i];
+            
+            if(candidate.user._id == _candidateId){
+                elections[electionAddress].candidates[i].voteCount = candidate.voteCount.add(1);
+            }
+
+        }
+
+        for (uint256 i = 0; i < candidateList.length; i++) {
+            if (candidateList[i].user._id == _candidateId) {
+                candidateList[i].votedVoterLists.push(_voterId);
+            }
+        }
+
+        for (uint256 i = 0; i < voterList.length; i++) {
+            if (voterList[i].user._id == _voterId) {
+                voterList[i].votedCandidateList.push(_candidateId);
+            }
+        }
+
+        voters[_voterId].voteLimitCount = voters[_voterId].voteLimitCount.add(
+            1
+        );
+
+        emit VoteCast(candidates[_candidateId]);
+    }
+
+    function addParty(
+        string memory _name,
+        uint256 _totalMember,
+        string memory _agenda,
+        string memory _logoUrl
+    ) public payable isAuthorize(msg.sender) {
         address[] memory emptyArray;
-        Party memory party = Party(adminAddress, _name, _totalMember, _agenda, _logoUrl, emptyArray);
-        
+        Party memory party = Party(
+            adminAddress,
+            _name,
+            _totalMember,
+            _agenda,
+            _logoUrl,
+            emptyArray
+        );
+
         parties[adminAddress] = party;
         partyNames.push(_name);
         partyList.push(party);
@@ -39,16 +99,24 @@ contract Election is Candidate, Voter, Party{
         emit PartyCreated(party);
     }
 
-    function createElection( 
+    function createElection(
         string memory _title,
         string memory _description,
         string memory _startDate,
         string memory _endDate,
         string memory _electionType,
         string[] memory galleryImagesUrl
-    ) public payable isAuthorize(msg.sender){
-        address[] memory selectedCandidates;
-        Election memory election = Election(_title, _description, _startDate, _endDate, _electionType, selectedCandidates, galleryImagesUrl);
+    ) public payable isAuthorize(msg.sender) {
+        Candidate[] memory candidates;
+        Election memory election = Election(
+            _title,
+            _description,
+            _startDate,
+            _endDate,
+            _electionType,
+            candidates,
+            galleryImagesUrl
+        );
 
         elections[_startDate] = election;
         electionList.push(election);
@@ -60,45 +128,68 @@ contract Election is Candidate, Voter, Party{
     function addSelectedCandidates(
         address[] memory _selectedCandidates,
         string memory electionAddress
-    ) public payable isAuthorize(msg.sender){
-        for (uint i = 0; i < _selectedCandidates.length; i++) {
-            elections[electionAddress].selectedCandidates.push(_selectedCandidates[i]);
+    ) public payable isAuthorize(msg.sender) {
+        for (uint256 i = 0; i < _selectedCandidates.length; i++) {
+            elections[electionAddress].candidates.push(
+                candidates[_selectedCandidates[i]]
+            );
         }
 
-        for(uint i = 0; i < electionList.length; i++){
-            if(keccak256(bytes(electionList[i].startDate)) == keccak256(bytes(electionAddress))){
-                for (uint j = 0; j < _selectedCandidates.length; j++) {
-                    electionList[i].selectedCandidates.push(_selectedCandidates[j]);
+        for (uint256 i = 0; i < electionList.length; i++) {
+            if (
+                keccak256(bytes(electionList[i].startDate)) ==
+                keccak256(bytes(electionAddress))
+            ) {
+                for (uint256 j = 0; j < _selectedCandidates.length; j++) {
+                    electionList[i].candidates.push(
+                        candidates[_selectedCandidates[i]]
+                    );
                 }
                 break;
             }
         }
     }
 
-    function addFaqs(string memory title, string memory description, string memory fileUrl, string memory createdAt) public payable{
+    function addFaqs(
+        string memory title,
+        string memory description,
+        string memory fileUrl,
+        string memory createdAt
+    ) public payable {
         address _id = msg.sender;
         ReplyComment[] memory replies;
 
-        FAQ memory faq = FAQ(_id, title, description, fileUrl, createdAt, replies);
-        faqs[_id] =faq;
+        FAQ memory faq = FAQ(
+            _id,
+            title,
+            description,
+            fileUrl,
+            createdAt,
+            replies
+        );
+        faqs[_id] = faq;
         faqList.push(faq);
     }
 
-    function addFaqComment(address faqId, string memory replyMsg, string memory createdAt) public payable{
+    function addFaqComment(
+        address faqId,
+        string memory replyMsg,
+        string memory createdAt
+    ) public payable {
         address _id = msg.sender;
         ReplyComment memory reply = ReplyComment(_id, replyMsg, createdAt);
 
         faqs[faqId].comments.push(reply);
 
-        for(uint i=0;i<faqList.length;i++){
-            if(faqList[i]._id == faqId){
+        for (uint256 i = 0; i < faqList.length; i++) {
+            if (faqList[i]._id == faqId) {
                 faqList[i].comments.push(reply);
                 break;
             }
         }
     }
 
-    function getAllElections() public view returns (Election[] memory){
+    function getAllElections() public view returns (Election[] memory) {
         return electionList;
     }
 
@@ -107,13 +198,9 @@ contract Election is Candidate, Voter, Party{
     }
 }
 
-
-
-
 // test data
 // Parbat, 0778, 22, wanna make secure system, sep 12 2022, kathamandu nepal, parbat@gmail.com, http://profile.com, Congress
-// Gaurab, 0778, 22, oct 11 2022, garuab@gmail.com, http://profile.com, madhesh ,sarlahi,barahathawa, 9 
-
+// Gaurab, 0778, 22, oct 11 2022, garuab@gmail.com, http://profile.com, madhesh ,sarlahi,barahathawa, 9
 
 // create election
 // Election 2022, hello world election, sep 12 2022 , sep 13 2022, province

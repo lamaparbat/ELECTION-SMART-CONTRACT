@@ -52,7 +52,7 @@ contract Structure {
         string startDate;
         string endDate;
         string electionType;
-        address[] selectedCandidates;
+        Candidate[] candidates;
         string[] galleryImagesUrl;
     }
 
