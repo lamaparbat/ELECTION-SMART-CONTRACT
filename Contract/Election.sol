@@ -39,6 +39,11 @@ contract Election is Candidate, Voter, Party {
             revert("You have exceed the vote caste limit.");
         }
 
+        // verify duplication vote
+        for(uint256 a = 0; a < candidates[_candidateId].votedVoterLists.length; a++){
+            require(candidates[_candidateId].votedVoterLists[a] != _voterId, "You have already voted !");
+        }
+
         candidates[_candidateId].votedVoterLists.push(_voterId);
         voters[_voterId].votedCandidateList.push(_candidateId);
         candidates[_candidateId].voteCount = candidates[_candidateId]
@@ -47,13 +52,15 @@ contract Election is Candidate, Voter, Party {
         voteCount = voteCount.add(1);
 
         // update the copy data in election collections
-        for (uint256 i = 0; i < elections[electionAddress].candidates.length; i++) {
-            Candidate memory candidate = elections[electionAddress].candidates[i];
-            
-            if(candidate.user._id == _candidateId){
-                elections[electionAddress].candidates[i].voteCount = candidate.voteCount.add(1);
+        for (uint256 i = 0; i < electionList.length; i++) {
+            if (keccak256(bytes(electionList[i].startDate)) ==  keccak256(bytes(electionAddress))) {
+                for(uint256 j = 0; j< electionList[i].candidates.length;j++){
+                    if(electionList[i].candidates[j].user._id == _candidateId){
+                        electionList[i].candidates[j].votedVoterLists.push(_voterId);
+                        electionList[i].candidates[j].voteCount = elections[electionAddress].candidates[j].voteCount.add(1);
+                    }
+                }
             }
-
         }
 
         for (uint256 i = 0; i < candidateList.length; i++) {
@@ -135,14 +142,14 @@ contract Election is Candidate, Voter, Party {
             );
         }
 
-        for (uint256 i = 0; i < electionList.length; i++) {
+        for (uint256 k = 0; k < electionList.length; k++) {
             if (
-                keccak256(bytes(electionList[i].startDate)) ==
+                keccak256(bytes(electionList[k].startDate)) ==
                 keccak256(bytes(electionAddress))
             ) {
                 for (uint256 j = 0; j < _selectedCandidates.length; j++) {
-                    electionList[i].candidates.push(
-                        candidates[_selectedCandidates[i]]
+                    electionList[k].candidates.push(
+                        candidates[_selectedCandidates[j]]
                     );
                 }
                 break;
