@@ -44,6 +44,16 @@ contract Election is Candidate, Voter, Party {
             require(candidates[_candidateId].votedVoterLists[a] != _voterId, "You have already voted !");
         }
 
+        // restrict candidate for to not vote more than 1 times
+        uint256 candidateVoteCount = 0;
+        for(uint256 a = 0; a < candidates[_candidateId].votedVoterLists.length; a++){
+            if(candidates[_candidateId].votedVoterLists[a] == _candidateId){
+                candidateVoteCount++;
+            }
+        }
+        require(candidateVoteCount <= 1, "Candidate only vote one times !");
+
+
         candidates[_candidateId].votedVoterLists.push(_voterId);
         voters[_voterId].votedCandidateList.push(_candidateId);
         candidates[_candidateId].voteCount = candidates[_candidateId]

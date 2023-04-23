@@ -2386,11 +2386,11 @@
 	},
 	"sources": {
 		"Contract/Election.sol": {
-			"keccak256": "0x9cdb44965ce61a682a04d2c57c77698e210a932651057501d389245635c26718",
+			"keccak256": "0xadddd450c63c4e9a68611ee7ab62c31da7f62987a505fe2556d6267f980db699",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://99e2a7f5c41cfe25f3a3896753236e96fa0c15ab8b9521644e8f19277b16c3e5",
-				"dweb:/ipfs/QmSPk66efJfuzmXoie9JXB9KgCGE2V9RZHZtb4dngx5Cdk"
+				"bzz-raw://6f39f99ea80667e84731611ea0c3684e4e878b8f7cf87523e6a4178967dfe3ce",
+				"dweb:/ipfs/QmP4qaVroM37MohRJPUHbX6PqHmeum53tsKgi6YV4uMdXL"
 			]
 		},
 		"Contract/src/common/Constants.sol": {
