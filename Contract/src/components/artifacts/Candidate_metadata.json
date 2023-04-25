@@ -84,6 +84,11 @@
 							},
 							{
 								"internalType": "string",
+								"name": "position",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
 								"name": "agenda",
 								"type": "string"
 							},
@@ -277,6 +282,11 @@
 					},
 					{
 						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
 						"name": "agenda",
 						"type": "string"
 					},
@@ -392,6 +402,11 @@
 					},
 					{
 						"internalType": "string",
+						"name": "position",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
 						"name": "agenda",
 						"type": "string"
 					},
@@ -503,6 +518,11 @@
 							},
 							{
 								"internalType": "string",
+								"name": "position",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
 								"name": "agenda",
 								"type": "string"
 							},
@@ -607,6 +627,11 @@
 							{
 								"internalType": "string",
 								"name": "partyName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "position",
 								"type": "string"
 							},
 							{
@@ -755,11 +780,11 @@
 			]
 		},
 		"Contract/src/common/Structure.sol": {
-			"keccak256": "0xb2724a9ad9544713c2cb2a13e77ee090ea57896c0800ddd24821d834142c9460",
+			"keccak256": "0xa226e3238a20b932fee0857e2f33ec8e21276ff86281bfd708e571d56ff8aa8b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0fc12e5e4a41ca0e4636863492b8b13ffde31094ab516ce7e6efe13f58270db6",
-				"dweb:/ipfs/QmUCQChoorPDSh476nvyNGKF6HoXYEENkNehZff1guNYLP"
+				"bzz-raw://4e6716cada984b35322aee2983b8a95edd86bcccddba4f8caa857fe1d99726ae",
+				"dweb:/ipfs/QmTiBagREWMA4xzr8SEFwJJhgg8zPNDKr39QFrSqHKpyAU"
 			]
 		},
 		"Contract/src/common/Utils.sol": {
@@ -771,11 +796,11 @@
 			]
 		},
 		"Contract/src/components/Candidate.sol": {
-			"keccak256": "0x01471256749cd5c240fae0457a0e647d34233fd97636934b0e5fb50cefa52830",
+			"keccak256": "0xdb8902a9503e2203e224d92ef14e56e86ee88fee02a316d666603f1469ea9e9c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2b56fa40bb236e80c6f1ac62a5f99bea9a8dcf5e7c7edcc90ae61f041f0d5a21",
-				"dweb:/ipfs/QmZtRuuEw4fHcMSAiEkikxHR2V6b4pwh3NrkxmsqJbUcxx"
+				"bzz-raw://061dbe0b0b95329edfe716480273e185d05fff9ad37e55f6c44533364633a6c9",
+				"dweb:/ipfs/QmQCU8vxnfYyVQbxYGA8h3PdmHzTtabJ6HVoyRjPsoTLjG"
 			]
 		},
 		"https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol": {

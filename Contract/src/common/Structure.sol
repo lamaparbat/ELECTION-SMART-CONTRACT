@@ -32,6 +32,8 @@ contract Structure {
     struct Candidate {
         User user;
         string partyName;
+        string position;
+        string votingBooth;
         string agenda;
         uint voteCount;
         address[] votedVoterLists;
@@ -63,5 +65,11 @@ contract Structure {
         string fileUrl;
         string createdAt;
         ReplyComment[] comments;
+    }
+
+    struct SelectedCandidatePayload{
+        address _id;
+        string position;
+        string votingBooth;
     }
 }

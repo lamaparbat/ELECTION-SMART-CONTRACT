@@ -31,7 +31,12 @@ contract Election is Candidate, Voter, Party {
 
         // restrict admin for vote casting
         if (_voterId == adminAddress) {
-            revert("Admin is restrict to caste vote.");
+            revert("Admin is restrict to vote !");
+        }
+
+        // restrict candidate for vote casting
+        for(uint256 i = 0;i<candidateList.length;i++){
+            require(candidateList[i].user._id != _voterId, "Candidate is restrict to vote !");
         }
 
         // verify vote limit count
@@ -44,16 +49,6 @@ contract Election is Candidate, Voter, Party {
             require(candidates[_candidateId].votedVoterLists[a] != _voterId, "You have already voted !");
         }
 
-        // restrict candidate for to not vote more than 1 times
-        uint256 candidateVoteCount = 0;
-        for(uint256 a = 0; a < candidates[_candidateId].votedVoterLists.length; a++){
-            if(candidates[_candidateId].votedVoterLists[a] == _candidateId){
-                candidateVoteCount++;
-            }
-        }
-        require(candidateVoteCount <= 1, "Candidate only vote one times !");
-
-
         candidates[_candidateId].votedVoterLists.push(_voterId);
         voters[_voterId].votedCandidateList.push(_candidateId);
         candidates[_candidateId].voteCount = candidates[_candidateId]
@@ -61,13 +56,14 @@ contract Election is Candidate, Voter, Party {
             .add(1);
         voteCount = voteCount.add(1);
 
+
         // update the copy data in election collections
         for (uint256 i = 0; i < electionList.length; i++) {
             if (keccak256(bytes(electionList[i].startDate)) ==  keccak256(bytes(electionAddress))) {
                 for(uint256 j = 0; j< electionList[i].candidates.length;j++){
                     if(electionList[i].candidates[j].user._id == _candidateId){
                         electionList[i].candidates[j].votedVoterLists.push(_voterId);
-                        electionList[i].candidates[j].voteCount = elections[electionAddress].candidates[j].voteCount.add(1);
+                        electionList[i].candidates[j].voteCount = electionList[i].candidates[j].voteCount.add(1);
                     }
                 }
             }
@@ -124,14 +120,15 @@ contract Election is Candidate, Voter, Party {
         string memory _electionType,
         string[] memory galleryImagesUrl
     ) public payable isAuthorize(msg.sender) {
-        Candidate[] memory candidates;
+        Candidate[] memory _candidates;
+
         Election memory election = Election(
             _title,
             _description,
             _startDate,
             _endDate,
             _electionType,
-            candidates,
+            _candidates,
             galleryImagesUrl
         );
 
@@ -142,14 +139,16 @@ contract Election is Candidate, Voter, Party {
         emit electionStart(election);
     }
 
+
     function addSelectedCandidates(
-        address[] memory _selectedCandidates,
+        SelectedCandidatePayload[] memory _selectedCandidates,
         string memory electionAddress
     ) public payable isAuthorize(msg.sender) {
         for (uint256 i = 0; i < _selectedCandidates.length; i++) {
-            elections[electionAddress].candidates.push(
-                candidates[_selectedCandidates[i]]
-            );
+            Candidate memory _candidate = candidates[_selectedCandidates[i]._id];
+            _candidate.position = _selectedCandidates[i].position;
+            _candidate.votingBooth = _selectedCandidates[i].votingBooth;
+            elections[electionAddress].candidates.push(_candidate);
         }
 
         for (uint256 k = 0; k < electionList.length; k++) {
@@ -158,9 +157,9 @@ contract Election is Candidate, Voter, Party {
                 keccak256(bytes(electionAddress))
             ) {
                 for (uint256 j = 0; j < _selectedCandidates.length; j++) {
-                    electionList[k].candidates.push(
-                        candidates[_selectedCandidates[j]]
-                    );
+                    Candidate memory _candidate = candidates[_selectedCandidates[j]._id];
+                    _candidate.position = _selectedCandidates[j].position;
+                    electionList[k].candidates.push(_candidate);
                 }
                 break;
             }
@@ -225,3 +224,6 @@ contract Election is Candidate, Voter, Party {
 // add faq & reply
 // UI design issues, please maintain your desing, https://file.png, 2023-23-23T1-23-12
 // 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, yes it caused problem, 2023-34-23T2-34-23
+
+// vote data mockup
+// PARBAT LAMA,4342,23,MALE,1999-05-20T09:05,parbat@gmail.com,https://storage.googleapis.com/download/storage/v1/b/dapp-voting-6045d.appspot.com/o/candidates%2F20220710_120630-1681960833232.jpg?generation=1681960836290419&alt=media,province1,Udayapur,Katari municipality
