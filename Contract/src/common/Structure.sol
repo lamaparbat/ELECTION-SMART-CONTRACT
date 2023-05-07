@@ -73,3 +73,4 @@ contract Structure {
         string votingBooth;
     }
 }
+

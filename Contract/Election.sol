@@ -159,6 +159,8 @@ contract Election is Candidate, Voter, Party {
                 for (uint256 j = 0; j < _selectedCandidates.length; j++) {
                     Candidate memory _candidate = candidates[_selectedCandidates[j]._id];
                     _candidate.position = _selectedCandidates[j].position;
+                    _candidate.votingBooth = _selectedCandidates[j].votingBooth;
+                    _candidate.votedVoterLists = new address[](0);
                     electionList[k].candidates.push(_candidate);
                 }
                 break;

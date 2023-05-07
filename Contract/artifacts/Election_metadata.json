@@ -742,6 +742,11 @@
 								"internalType": "string",
 								"name": "position",
 								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "votingBooth",
+								"type": "string"
 							}
 						],
 						"internalType": "struct Structure.SelectedCandidatePayload[]",
@@ -751,11 +756,6 @@
 					{
 						"internalType": "string",
 						"name": "electionAddress",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "_votingBooth",
 						"type": "string"
 					}
 				],
@@ -2483,11 +2483,11 @@
 	},
 	"sources": {
 		"Contract/Election.sol": {
-			"keccak256": "0x0b05522b952976dccd3a9321d00c3958c42f9e72e3a3a175370946d73b46cb2f",
+			"keccak256": "0x04ffaa793e26bfdbd0f99c1e885c55e25941449baaf1e2cbc1a6fdc9686ab6f1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d5c55a08035b4409a863ed89afd21ca0fda9bd263371209796e3cc9824149d05",
-				"dweb:/ipfs/QmbVdsPEtLnLUWJCBGeNXJTTEMcoqrqW1B4d9AyVrTttYa"
+				"bzz-raw://f607e0fd3a266e24f5771073c5990ddeb58d6adcf6147d75bc59db8d300f1126",
+				"dweb:/ipfs/QmXYhe4PQU99H3Zt6QTJoKqzJqJNCeFoktQfyhZDK25Yba"
 			]
 		},
 		"Contract/src/common/Constants.sol": {
@@ -2499,11 +2499,11 @@
 			]
 		},
 		"Contract/src/common/Structure.sol": {
-			"keccak256": "0x1492475ab5d1cebb48a259f8db2315d12c973399fcefc88541ed57141cf24b4e",
+			"keccak256": "0xef0143b288b0fee511a9f863e5e0b9e35b9910dff99f6b60de533d6383cf64c2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://50c807b164b92715d43538bb3532fb6e38cbffe641dde25911ec15bb62c806a6",
-				"dweb:/ipfs/QmTwTmC7xNy1WkzagsLAnDwRWKYYpwnUU545Dh7ZJ2jPza"
+				"bzz-raw://b6d627562512cde9da31295149d1eb9c28e4bf9b2343b36a83911ddc0069f60d",
+				"dweb:/ipfs/QmdbdCLvAiTFbdaR7LKXXC2vArnJr4x2HM7FTQ7XrwfCNz"
 			]
 		},
 		"Contract/src/common/Utils.sol": {
